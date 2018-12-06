@@ -28,7 +28,7 @@ const config={
                         loader:'url-loader',
                         options:{
                             limit:1024,//当文件大小小于1024将图片转成base64
-                            name:'[name].[ext] '//name文件的名字，ext文件的扩展名
+                            name:'[path][name].[ext] '//name文件的名字，ext文件的扩展名,path原来文件路径（没有运行npm run dev会报404）
                         }
                     }
                 ]
