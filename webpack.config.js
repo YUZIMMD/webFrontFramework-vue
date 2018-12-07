@@ -1,6 +1,7 @@
 const path = require('path');//path是nodejs中的一个基础包
 const VueLoaderPlugin = require('vue-loader/lib/plugin');//. Vue-loader在15.*之后的版本都是 vue-loader的使用都是需要伴生 VueLoaderPlugin的
 const webpack = require('webpack')
+// 在package中设置的script的设置获取
 const isDev = process.env.NODE_ENV === 'development'
 const HTMLPlugin = require('html-webpack-plugin')
 const config={
@@ -54,10 +55,20 @@ const config={
 }
 // 根据不同的环境来配置
 if(isDev){
+config.devtool='#cheap-module-eval-source-map',//source-map    
 config.devServer = {
     port:8000,
     host:'0.0.0.0',
-    overlay: true//将错误显示在页面上
+    overlay: {errors:true},//将错误显示在页面上
+    open:true,//自动打开浏览器页面
+    // historyFallback:{
+    //     // 将浏览器不识别的地址，映射到index.html入口文件
+    // },
+    hot:true//热更新
 }
+config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+)
 }
 module.exports = config
