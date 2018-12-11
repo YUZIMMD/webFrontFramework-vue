@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//打包生成html文件并且引入打包后的资源文件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');//提取散落的css，单独打包成css文件
 
 module.exports = {
     // 指定打包入口
@@ -21,7 +22,45 @@ module.exports = {
             {
                 test:/\.css$/,
                 include:[path.resolve(__dirname,'src')],
-                use:['style-loader','css-loader']//将css转变为js
+                // use:['style-loader','css-loader']//将css转变为js
+                use:[
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader:'postcss-loader',
+                        options:{
+                            plugins:[require('autoprefixer')]
+                        }
+                    }
+                ]
+            },
+            {
+                test:/\.less$/,
+                include:[path.resolve(__dirname,'src')],
+                // use:['style-loader','css-loader']//将css转变为js
+                use:[
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader:'postcss-loader',
+                        options:{
+                            plugins:[require('autoprefixer')]
+                        }
+                    },
+                    'less-loader'
+                ]
+            },
+            {
+                test:/\.(png|jpg|gif)$/,
+                use:[
+                    {
+                        loader:'url-loader',
+                        options:{
+                            outputPath:'images/',
+                            limit:500
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -35,6 +74,10 @@ module.exports = {
                 removeAttributeQuotes:true,//删除双引号
                 collapseInlineTagWhitespace:true//折叠html为一行
             }
+        }),
+        new MiniCssExtractPlugin({
+            filename:'[name].css',
+            chunkFilename:'[id].css'
         })
     ]
 }
