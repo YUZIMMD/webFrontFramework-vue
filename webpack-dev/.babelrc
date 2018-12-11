@@ -10,5 +10,6 @@
                 "useBuiltInts":"usage"
             }
         ]
-    ]
+    ],
+    "plugins":["@babel/plugin-transform-runtime"]
 }

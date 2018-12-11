@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//打包生成html文件并且引入打包后的资源文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');//提取散落的css，单独打包成css文件
+const CleanWebpackPlugin = require('clean-webpack-plugin');//打包前清理dist目录
 
 module.exports = {
     // 指定打包入口
@@ -85,6 +86,34 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename:'[name].css',
             chunkFilename:'[id].css'
-        })
-    ]
+        }),
+        new CleanWebpackPlugin(['dist'])
+    ],
+    optimization:{
+        splitChunks:{
+            cacheGroups:{
+                commons:{
+                    // 抽离自己写的公共代码
+                    chunks:'initial',
+                    name:'common',//打包后的文件名，任意命名
+                    minChunks:2,//最小引用2次
+                    minSize:0//只要超出0字节就生成一个新包
+                },
+                styles:{
+                    name:'styles',//抽离公共样式
+                    test:'/\.css$/',
+                    chunks:'all',
+                    minChunks:2,
+                    enforce:true
+                },
+                verdor:{
+                    //抽离第三方插件
+                    test:/node_modules/,
+                    chunks:'initial',
+                    name:'verdor',
+                    priority:10
+                }
+            }
+        }
+    }
 }
