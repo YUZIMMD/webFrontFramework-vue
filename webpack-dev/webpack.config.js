@@ -9,7 +9,7 @@ module.exports = {
     // 打包出口
     output:{
         path:path.resolve(__dirname,'dist'),//方法会将把一个路径或者路径片段的序列解析为一个绝对路径
-        filename:'bundle.js'
+        filename:'[name].[hash:8].js'
     },
     module:{
         /* test:匹配特定条件。一般是提供一个正则表达式或正则表达式的数组
@@ -84,8 +84,8 @@ module.exports = {
             }
         }),
         new MiniCssExtractPlugin({
-            filename:'[name].css',
-            chunkFilename:'[id].css'
+            filename:'[name][hash:8].css',
+            chunkFilename:'[id][hash:8].css'
         }),
         new CleanWebpackPlugin(['dist'])
     ],
@@ -115,5 +115,29 @@ module.exports = {
                 }
             }
         }
+    },
+    resolve: {
+        /**
+         * alias: 别名的配置
+         *
+         * extensions: 自动解析确定的扩展,
+         *    比如 import 'xxx/theme.css' 可以在extensions 中添加 '.css'， 引入方式则为 import 'xxx/theme'
+         *    @default ['.wasm', '.mjs', '.js', '.json']
+         *
+         * modules 告诉 webpack 解析模块时应该搜索的目录
+         *   如果你想要添加一个目录到模块搜索目录，此目录优先于 node_modules/ 搜索
+         *   这样配置在某种程度上可以简化模块的查找，提升构建速度 @default node_modules 优先
+         */
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+          tool$: path.resolve(__dirname, 'src/utils/tool.js') // 给定对象的键后的末尾添加 $，以表示精准匹配
+        },
+        extensions: ['.wasm', '.mjs', '.js', '.json', '.jsx'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+      },
+    devServer:{
+        port:1234,
+        open:true,
+        compress:true
     }
 }
