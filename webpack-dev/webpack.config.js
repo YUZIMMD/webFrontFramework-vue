@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');//打包生成html文件并且引入打包后的资源文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');//提取散落的css，单独打包成css文件
 const CleanWebpackPlugin = require('clean-webpack-plugin');//打包前清理dist目录
+const webpack = require('webpack');
 
 module.exports = {
     // 指定打包入口
@@ -40,7 +41,8 @@ module.exports = {
                 include:[path.resolve(__dirname,'src')],
                 // use:['style-loader','css-loader']//将css转变为js
                 use:[
-                    MiniCssExtractPlugin.loader,
+                    // MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader',
                     {
                         loader:'postcss-loader',
@@ -87,7 +89,8 @@ module.exports = {
             filename:'[name][hash:8].css',
             chunkFilename:'[id][hash:8].css'
         }),
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['dist']),
+        new webpack.HotModuleReplacementPlugin()
     ],
     optimization:{
         splitChunks:{
