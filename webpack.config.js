@@ -29,7 +29,7 @@ const config ={
                     {
                         loader: 'postcss-loader',
                         options: {
-                        plugins: [require('autoprefixer')]
+                            plugins: [require('autoprefixer')]
                         }
                     }
                 ]
@@ -51,6 +51,12 @@ const config ={
                 use:[
                     'style-loader',
                     'css-loader',
+                    {
+                        loader:'postcss-loader',
+                        options:{
+                            sourceMap:true
+                        }
+                    },
                     'stylus-loader'
                 ]
             },
@@ -70,7 +76,11 @@ const config ={
             }
         }),
         new VueLoaderPlugin(),
-        new HTMLPlugin()
+        new HTMLPlugin(),
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash:8].css',
+            chunkFilename: '[id].[hash:8].css'
+        })
     ]
 }
 
