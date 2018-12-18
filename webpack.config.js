@@ -85,23 +85,23 @@ const config ={
 }
 
 
-if(isDev){
-  config.devtool ='#cheap-module-eval-source-map'  
-  config.devServer={
-      port:8000,
-      host:'0.0.0.0',//同局域网可以访问
-      overlay:{
-          errors:true
-      },
-      open:true,
-      hot:true
-    //   historyFallback:{
+// if(isDev){
+//   config.devtool ='#cheap-module-eval-source-map'  
+//   config.devServer={
+//       port:8000,
+//       host:'0.0.0.0',//同局域网可以访问
+//       overlay:{
+//           errors:true
+//       },
+//       open:true,
+//       hot:true
+//     //   historyFallback:{
 
-    //   }
-  }
-  config.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
-  )
-}
+//     //   }
+//   }
+//   config.plugins.push(
+//       new webpack.HotModuleReplacementPlugin(),
+//       new webpack.NoEmitOnErrorsPlugin()
+//   )
+// }
 module.exports = config
