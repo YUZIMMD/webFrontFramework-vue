@@ -47,7 +47,7 @@ const config ={
                 ]
             },
             {
-                test:/\.styl$/,
+                test: /\.styl(us)?$/,
                 use:[
                     'style-loader',
                     'css-loader',
@@ -55,7 +55,7 @@ const config ={
                         loader:'postcss-loader',
                         options:{
                             sourceMap:true
-                        }
+                        } 
                     },
                     'stylus-loader'
                 ]
@@ -64,7 +64,11 @@ const config ={
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                  loader: 'babel-loader'
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: ['@babel/plugin-proposal-object-rest-spread']
+                  }
                 }
             }
         ]
