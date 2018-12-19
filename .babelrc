@@ -1,5 +1,5 @@
 {
-    "presets": [
+    "presets": ["env",
       [
         "@babel/preset-env",
         {
@@ -11,6 +11,6 @@
         }
       ]
     ],
-    "plugins": ["@babel/plugin-transform-runtime"]
+    "plugins": ["@babel/plugin-transform-runtime","transform-vue-jsx"]
   }
   
