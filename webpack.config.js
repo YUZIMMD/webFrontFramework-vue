@@ -70,7 +70,11 @@ const config ={
                     plugins: ['@babel/plugin-proposal-object-rest-spread']
                   }
                 }
-            }
+            },
+            {
+                test: /.jsx$/, //使用loader的目标文件。这里是.jsx
+                loader: 'babel-loader'
+            }          
         ]
     },
     plugins: [
