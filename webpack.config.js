@@ -20,20 +20,20 @@ const config ={
                 test:/\.vue$/,
                 loader:'vue-loader'
             },
-            {
-                test:/\.css$/,
-                // loader:'css-loader'//处理css文件
-                use:[
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: [require('autoprefixer')]
-                        }
-                    }
-                ]
-            },
+            // {
+            //     test:/\.css$/,
+            //     // loader:'css-loader'//处理css文件
+            //     use:[
+            //         MiniCssExtractPlugin.loader,
+            //         'css-loader',
+            //         {
+            //             loader: 'postcss-loader',
+            //             options: {
+            //                 plugins: [require('autoprefixer')]
+            //             }
+            //         }
+            //     ]
+            // },
             {
                 test:/\.(gif|jpg|jpeg|png|svg)$/,
                 use:[
@@ -44,20 +44,6 @@ const config ={
                             name:'[name].[ext]'//最后输出文件的名字
                         }
                     }
-                ]
-            },
-            {
-                test: /\.styl(us)?$/,
-                use:[
-                    'style-loader',
-                    'css-loader',
-                    {
-                        loader:'postcss-loader',
-                        options:{
-                            sourceMap:true
-                        } 
-                    },
-                    'stylus-loader'
                 ]
             },
             {
@@ -84,11 +70,7 @@ const config ={
             }
         }),
         new VueLoaderPlugin(),
-        new HTMLPlugin(),
-        new MiniCssExtractPlugin({
-            filename: '[name].[hash:8].css',
-            chunkFilename: '[id].[hash:8].css'
-        })
+        new HTMLPlugin()
     ]
 }
 
@@ -107,9 +89,45 @@ if(isDev){
 
     //   }
   }
+  config.module.rules.push({
+    test: /\.styl(us)?$/,
+    use:[
+        'style-loader',
+        'css-loader',
+        {
+            loader:'postcss-loader',
+            options:{
+                sourceMap:true
+            } 
+        },
+        'stylus-loader'
+    ]
+  })
   config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin()
   )
+}else{
+    config.module.rules.push( {
+        test: /\.styl(us)?$/,
+        include: [path.resolve(__dirname, 'src')],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')]
+            }
+          },
+          'stylus-loader'
+        ]
+    })
+    config.plugins.push(
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash:8].css',
+            chunkFilename: '[id].[hash:8].css'
+        })
+    )
 }
 module.exports = config
