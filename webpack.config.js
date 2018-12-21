@@ -112,6 +112,7 @@ if(isDev){
         app:path.join(__dirname,'src/index.js'),
         vendor:['vue']
     }
+    config.output.filename='[name].[chunkhash:8].js'
     config.module.rules.push( {
         test: /\.styl(us)?$/,
         include: [path.resolve(__dirname, 'src')],
