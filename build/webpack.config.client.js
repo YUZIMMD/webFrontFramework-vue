@@ -13,7 +13,7 @@ let config
 
 const devServer ={
     port:8000,
-    host:'0.0.0.0',//同局域网可以访问
+    host:'localhost',//同局域网可以访问
     overlay:{
         errors:true
     },
