@@ -62,7 +62,7 @@ if(isDev){
 }else{
     config = merge(baseConfig, {
         entry: {
-          app: path.join(__dirname, '../src/index.js'),
+          app: path.join(__dirname, '../client/index.js'),
           vendor: ['vue']
         },
         output: {
@@ -72,7 +72,7 @@ if(isDev){
           rules: [
             {
                 test: /\.styl(us)?$/,
-                include: [path.resolve(__dirname, '../src')],
+                include: [path.resolve(__dirname, '../client')],
                 use: [
                   MiniCssExtractPlugin.loader,
                   'css-loader',
