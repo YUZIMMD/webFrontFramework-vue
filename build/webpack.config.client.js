@@ -47,7 +47,7 @@ if(isDev){
                         loader:'postcss-loader',
                         options:{
                             sourceMap:true,// 开启 CSS Modules
-                            modules: true
+                            // modules: true通过动态类的绑定
                         } 
                     },
                     'stylus-loader'
