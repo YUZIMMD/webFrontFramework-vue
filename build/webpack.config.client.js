@@ -33,6 +33,7 @@ const defaultPlugins=[
     new HTMLPlugin()
 ]
 if(isDev){
+    //开发环境
   config = merge(baseConfig,{
       devtool:'#cheap-module-eval-source-map' ,
       module:{
@@ -40,12 +41,13 @@ if(isDev){
             {
                 test: /\.styl(us)?$/,
                 use:[
-                    'style-loader',
+                    'vue-style-loader',
                     'css-loader',
                     {
                         loader:'postcss-loader',
                         options:{
-                            sourceMap:true
+                            sourceMap:true,// 开启 CSS Modules
+                            modules: true
                         } 
                     },
                     'stylus-loader'
