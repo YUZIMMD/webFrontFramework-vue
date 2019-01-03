@@ -10,6 +10,7 @@
     "clean": "rimraf dist",
     "lint": "eslint client --ext .js,.jsx,.vue --color",
     "lint:fix": "eslint --fix client --ext .js,.jsx,.vue --color",
+    "precommit":"npm run lint:fix",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode=development --config build/webpack.config.client.js"
   },
   "repository": {
