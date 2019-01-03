@@ -88,4 +88,3 @@ export default {
     box-shadow inset 0 -2px 1px rgba(158, 150, 150, 0.15);
 }
 </style>
-
