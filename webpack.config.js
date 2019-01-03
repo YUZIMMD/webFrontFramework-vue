@@ -60,7 +60,7 @@ const config ={
             {
                 test: /.jsx$/, //使用loader的目标文件。这里是.jsx
                 loader: 'babel-loader'
-            }          
+            }
         ]
     },
     plugins: [
@@ -74,9 +74,8 @@ const config ={
     ]
 }
 
-
 if(isDev){
-  config.devtool ='#cheap-module-eval-source-map'  
+  config.devtool ='#cheap-module-eval-source-map'
   config.devServer={
       port:8000,
       host:'0.0.0.0',//同局域网可以访问
@@ -98,7 +97,7 @@ if(isDev){
             loader:'postcss-loader',
             options:{
                 sourceMap:true
-            } 
+            }
         },
         'stylus-loader'
     ]
@@ -113,7 +112,7 @@ if(isDev){
         vendor:['vue']
     }
     config.output.filename='[name].[chunkhash:8].js'
-    config.module.rules.push( {
+    config.module.rules.push({
         test: /\.styl(us)?$/,
         include: [path.resolve(__dirname, 'client')],
         use: [
@@ -130,7 +129,7 @@ if(isDev){
     })
     config.plugins.push(
         new MiniCssExtractPlugin({
-            filename: '[name].[hash:8].css',
+            filename: '[name].[hash:8].css'
             // chunkFilename: '[id].[hash:8].css'
         })
     )
