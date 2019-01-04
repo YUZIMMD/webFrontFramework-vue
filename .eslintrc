@@ -24,6 +24,7 @@
         "axios": true
     },
     "rules": {
+        "no-new":"off",
         "no-multi-spaces":0,
         "quotes":0,
         "curly":1,
