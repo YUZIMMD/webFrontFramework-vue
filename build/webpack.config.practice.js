@@ -5,8 +5,6 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
 
-//  判断开发环境还是生产环境
-
 let config
 
 const devServer = {
