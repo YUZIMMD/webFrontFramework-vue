@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+// vue组件实例方法
 const app = new Vue({
   // el:'#root',
   template:'<div ref="div">{{text}}{{obj.a}}</div>',
