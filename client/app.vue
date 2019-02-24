@@ -4,7 +4,7 @@
         <Header></Header>  
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
-        <router-link :to="{name:'app'}">app</router-link>
+        <router-link to='./app'>app</router-link>
         <router-link to='./login'>login</router-link>
         <router-view />   
         <Footer></Footer>

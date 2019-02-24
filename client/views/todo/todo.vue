@@ -13,6 +13,7 @@
         @del = 'deleteTodo'
         />
         <Tabs @clearAllCompleted="clearAllCompleted" @toggle="toggleFilter" :filter="filter" :todos="todos"></Tabs>
+        <router-view/>
     </section>
 </template>
 <script>
