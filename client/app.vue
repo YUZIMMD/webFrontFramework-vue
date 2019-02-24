@@ -2,6 +2,7 @@
     <div id="app">
         <div id="cover"></div>
         <Header></Header>  
+        <p>{{count}}</p>
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
         <router-link to='./app'>app</router-link>
@@ -25,6 +26,18 @@ export default {
     data(){
         return{
         }
+    },
+    mounted(){
+      console.log(this.$store)
+      let i = 1
+      setInterval(()=>{
+        this.$store.commit('updateCount',i++)
+      },1000)
+    },
+    computed:{
+      count(){
+        return this.$store.state.count
+      }
     }
 }
 </script>
