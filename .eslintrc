@@ -54,7 +54,7 @@
         "no-compare-neg-zero":2,
         "no-irregular-whitespace":2,
         "no-unreachable":2,
-        "no-magic-numbers":1,
+        "no-magic-numbers":0,
         "camelcase":1,
         "no-tabs":0,
         "comma-dangle": 1,

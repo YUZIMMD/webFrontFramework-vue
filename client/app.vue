@@ -2,7 +2,7 @@
     <div id="app">
         <div id="cover"></div>
         <Header></Header>  
-        <p>{{count}}</p>
+        <p>{{fullName}}{{count}}</p>
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
         <router-link to='./app'>app</router-link>
@@ -14,6 +14,11 @@
     </div>
 </template>
 <script>
+// 快速在组件内使用vuex
+import {
+  mapState
+  // mapGetters
+} from 'vuex'
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 // import Todo from './views/todo/todo.vue'
@@ -35,8 +40,12 @@ export default {
       },1000)
     },
     computed:{
-      count(){
-        return this.$store.state.count
+      ...mapState(['count']),
+      // count(){
+      //   return this.$store.state.count
+      // },
+      fullName(){
+        return this.$store.getters.fullName
       }
     }
 }
