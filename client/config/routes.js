@@ -9,13 +9,11 @@ export default [
     },
     {
         path:'/app',
-        component:Todo
+        component:Todo,
+        name:'app'//这个命名和path没关系
     },
     {
         path:'/login',
         component:Login
-    },
-    {
-        path:'login/exract'
     }
 ]
