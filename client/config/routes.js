@@ -14,5 +14,8 @@ export default [
     {
         path:'/login',
         component:Login
+    },
+    {
+        path:'login/exract'
     }
 ]

@@ -17,11 +17,9 @@ const devServer = {
   overlay: {
     errors: true
   },
+  historyApiFallback: true,
   open: true,
   hot: true
-  //   historyFallback:{
-
-  //   }
 }
 const defaultPlugins = [
   new webpack.DefinePlugin({
