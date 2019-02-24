@@ -6,7 +6,9 @@
         <!-- 挂载路由 -->
         <router-link to='./app'>app</router-link>
         <router-link to='./login'>login</router-link>
-        <router-view />   
+        <transition name="fade">
+           <router-view />   
+        </transition>
         <Footer></Footer>
     </div>
 </template>
