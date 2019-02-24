@@ -30,7 +30,9 @@ const defaultPlugins = [
     }
   }),
   new VueLoaderPlugin(),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template:path.join(__dirname,'./template.html')
+  })
 ]
 if (isDev) {
   // 开发环境
