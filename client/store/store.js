@@ -7,7 +7,7 @@ import actions from './actions/actions'
 const isDev = process.env.NODE_ENV === 'development'
 
 export default ()=>{
-    return new Vuex.Store({
+    const store =  new Vuex.Store({
         strict:isDev,//在开发环境中，在正式环境中关掉
         state:defaultState,
         mutations,//修改一个数据，放在mutations,mutations是同步的
@@ -49,4 +49,26 @@ export default ()=>{
             }
         }
     })
+
+    if (module.hot){
+        module.hot.accept([
+            './state/state',
+            './mutations/mutations',
+            './getters/getters',
+            './actions/actions'
+        ],()=>{
+            const newState = require('./state/state').default
+            const newActions = require('./actions/actions').default
+            const newGetters = require('./getters/getters').default
+            const newMutations = require('./mutations/mutations').default
+
+            store.hotUpdate({
+                state:newState,
+                mutations:newMutations,
+                getters:newGetters,
+                actions:newActions
+            })
+        })
+    }
+    return store
 }

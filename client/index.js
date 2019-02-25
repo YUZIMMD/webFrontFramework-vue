@@ -11,6 +11,14 @@ Vue.use(Vuex)
 
 const router = RouterT()
 const store = StoreT()
+
+// 动态注册一个新的模块
+store.registerModule('c',{
+  state:{
+    text:3
+  }
+})
+
 new Vue({
   router,
   store,
