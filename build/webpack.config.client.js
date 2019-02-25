@@ -72,6 +72,7 @@ if (isDev) {
     },
     output: {
       filename: '[name].[chunkhash:8].js',
+      publicPath:'./'
     },
     module: {
       rules: [
