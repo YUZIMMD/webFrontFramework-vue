@@ -19,7 +19,8 @@ const devServer = {
   },
   historyApiFallback: true,
   open: true,
-  hot: true
+  hot: true,
+  
 }
 const defaultPlugins = [
   new webpack.DefinePlugin({
@@ -35,6 +36,9 @@ const defaultPlugins = [
 if (isDev) {
   // 开发环境
   config = merge(baseConfig, {
+    output:{
+      publicPath:'/'
+    },
     devtool: '#cheap-module-eval-source-map',
     module: {
       rules: [
@@ -67,7 +71,7 @@ if (isDev) {
       vendor: ['vue']
     },
     output: {
-      filename: '[name].[chunkhash:8].js'
+      filename: '[name].[chunkhash:8].js',
     },
     module: {
       rules: [

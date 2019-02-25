@@ -6,7 +6,7 @@
         <p>{{textC}}{{textPlus}}</p>
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
-        <router-link to='./app'>app</router-link>
+        <router-link :to="{name:'app', params: { id: 123 }}">app</router-link>
         <router-link to='./login'>login</router-link>
         <transition name="fade">
            <router-view />   
@@ -51,6 +51,7 @@ export default {
       this['a/updateText']('123')//a模块化下面的mutation方法
       this['a/add']()
       this.textAction()
+      console.log(this.$route)
     },
     computed:{
       // textA(){
