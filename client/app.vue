@@ -12,6 +12,7 @@
            <router-view />   
         </transition>
         <Footer></Footer>
+           <router-view name="a" />   
     </div>
 </template>
 <script>
