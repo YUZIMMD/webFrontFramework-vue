@@ -49,7 +49,7 @@ export default ()=>{
             }
         }
     })
-
+    //vuex热更新
     if (module.hot){
         module.hot.accept([
             './state/state',
