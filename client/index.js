@@ -18,6 +18,24 @@ store.registerModule('c',{
     text:3
   }
 })
+// 路由守卫
+router.beforeEach((to,from,next)=>{
+  console.log('before each invoked')
+  if(to.fullPath === '/login'){
+    // 验证一些页面是需要登录才可以访问的
+    next()
+  }else{
+    next()
+  }
+})
+router.beforeResolve((to,from,next)=>{
+  console.log('before each invoked')
+  next()
+})
+
+router.afterEach((to,from)=>{
+  console.log('after each invoked')
+})
 
 new Vue({
   router,

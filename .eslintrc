@@ -74,6 +74,7 @@
             "error",
             "windows"
         ],
-        "semi": 0
+        "semi": 0,
+        "no-debugger": 0
     }
   }

@@ -21,6 +21,19 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id =0
 export default {
+    beforeRouteEnter(to,from,next){
+        console.log('todo before enter')
+        next()
+    },
+    beforeRouteUpdate(to,from,next){
+        // 同样路由形式的切换才会改变，例如/app/123变成/app/456
+        console.log('todo before update')
+        next()
+    },
+    beforeRouteLeave(to,from,next){
+        console.log('todo before leave')
+        next()
+    },
     data(){
         return{
             todos:[],
