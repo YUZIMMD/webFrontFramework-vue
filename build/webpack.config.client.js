@@ -6,6 +6,8 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
 
+const VueClientPlugin = require('vue-server-renderer/client-plugin')
+
 //  判断开发环境还是生产环境
 const isDev = process.env.NODE_ENV === 'development'
 
@@ -31,7 +33,8 @@ const defaultPlugins = [
   new VueLoaderPlugin(),
   new HTMLPlugin({
     template:path.join(__dirname,'./template.html')
-  })
+  }),
+  new VueClientPlugin()
 ]
 if (isDev) {
   // 开发环境
