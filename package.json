@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/YUZIMMD/webFrontFramework-vue#readme",
   "dependencies": {
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
     "vue": "^2.5.21",
     "vue-router": "^3.0.2",
     "vue-server-renderer": "^2.6.10",
