@@ -3,7 +3,7 @@
         <div id="cover"></div>
         <Header></Header>  
         <p>{{fullName}}{{count}}</p>
-        <p>{{textC}}{{textPlus}}</p>
+        <p>{{textPlus}}</p>
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
         <router-link :to="{name:'app', params: { id: 123 }}">app</router-link>
@@ -63,8 +63,8 @@ export default {
       },
       ...mapState({
         count:(state)=>state.count,
-        textA:state => state.a.text,
-        textC:state =>state.c.text
+        textA:state => state.a.text
+        // textC:state =>state.c.text
       }),
       // count(){
       //   return this.$store.state.count

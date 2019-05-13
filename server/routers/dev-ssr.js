@@ -34,20 +34,21 @@ serverCompiler.watch({},(err,status)=>{
 })//每次改，都重新打包
 
 const handleSSR = async (ctx) => {
-    if(bundle){
+    if(!bundle){
         ctx.body = '你等一会儿，别着急。。。。'
         return
     }
 
     // 当前server和webpack-dev-server
     const clientMainfestResp = await axios.get(
-        'http://127.0.0.1:8000/vue-ssr-client-mainfest.json'//VueClientPlugin插件自动生成的文件名
+        'http://127.0.0.1:8000/vue-ssr-client-manifest.json'//VueClientPlugin插件自动生成的文件名
     )
     
     const clientMainfest = clientMainfestResp.data;
     // 读取template内容
     const template = fs.readFileSync(
-        path.join(__dirname,'../server.template.ejs')
+        path.join(__dirname,'../server.template.ejs'),
+        'utf-8'
     )
 
     const renderer = VueServerRenderer.createBundleRenderer(bundle,{

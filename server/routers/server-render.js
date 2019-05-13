@@ -17,7 +17,7 @@ module.exports = async (ctx, renderer,template)=>{
 
         ctx.body = html;//返回客户端我们想要的内容
     }catch(err){
-        console.log(err);
+        console.log('render error',err);
         throw (err);
     }
 }
