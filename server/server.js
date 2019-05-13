@@ -1,5 +1,7 @@
 const Koa = require('koa');
 
+const pageRouter = require('./routers/dev-ssr')
+
 const app = new Koa();
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -20,4 +22,11 @@ app.use(async (ctx,next)=>{
     }
 })
 
+app.use(pageRouter.routes()).use(pageRouter.allowedMethods())
 // 服务端渲染-引用两个不同的文件来处理
+const HOST = process.env.HOST || '0.0.0.0'
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT,HOST,()=>{
+    console.log(`server is listening on ${HOST}:${PORT}`)
+})

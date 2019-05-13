@@ -8,7 +8,7 @@ const path = require('path')
 const fs = require('fs')
 
 
-
+const serverRender = require('./server-render') 
 const serverConfig = require('../../build/webpack.config.server')
 
 // 在node环境中编辑webpack
@@ -17,6 +17,7 @@ const mfs = new MemoryFs();
 serverCompiler.outputFileSystem = mfs//指定webpack的serverCompiler的输出目录是mfs
 
 let bundle;
+// 每次改了一个文件都会重新执行打包
 serverCompiler.watch({},(err,status)=>{
     if(err) throw err
     status = status.toJson()
@@ -29,6 +30,7 @@ serverCompiler.watch({},(err,status)=>{
     )
 
     bundle = JSON.parse(mfs.readFileSync(bundlePath,'utf-8'))
+    console.log('new bundle generated')
 })//每次改，都重新打包
 
 const handleSSR = async (ctx) => {
@@ -50,8 +52,14 @@ const handleSSR = async (ctx) => {
 
     const renderer = VueServerRenderer.createBundleRenderer(bundle,{
         inject:false,
-        clientMainfest
+        clientMainfest//自动生成带有<script></script>标签的js引用的字符串
     })
 
+    await serverRender(ctx,renderer,template)
 }
 
+
+const router = new Router();
+router.get('*',handleSSR)
+
+module.exports = router;

@@ -1,4 +1,4 @@
-// 在node端跑起来就够了，配置相对简单
+// 在node端跑起来就够了，配置相对简单，不需要配置开发环境和生产环境
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const webpack = require('webpack')
@@ -19,7 +19,7 @@ let config
       filename:'server-entry.js',
       path:path.join(__dirname,'../server-build')
   },
-  externals:Object.keys(require('../package.json').dependencies),
+  externals:Object.keys(require('../package.json').dependencies),//不要打包这部分的文件
   module: {
     rules: [
         // 有dom操作的
@@ -38,6 +38,7 @@ let config
     //       'stylus-loader'
     //     ]
     //   }
+    // node端没有dom执行的环境，所以使用下面这种方式
     {
         test: /\.styl(us)?$/,
         include: [path.resolve(__dirname, '../client')],
@@ -60,10 +61,11 @@ let config
     filename: '[name].[hash:8].css'
     // chunkFilename: '[id].[hash:8].css'
     }),
-    new webpack.defaultPlugins({
+    new webpack.DefinePlugin({
         'process.env.NODE_ENV':JSON.stringify(process.env.NODE_ENV||'development'),
         'process.env.VUE_ENV':'"server"'
     }),
+    new VueLoaderPlugin(),
     new VueServerPlugin()//整体打包输出一个json文件，通过这个插件做很多服务端渲染的东西
   ]
 })
