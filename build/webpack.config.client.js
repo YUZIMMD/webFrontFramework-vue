@@ -1,5 +1,5 @@
 const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
@@ -39,6 +39,7 @@ const defaultPlugins = [
 if (isDev) {
   // 开发环境
   config = merge(baseConfig, {
+    mode:'development',
     output:{
       publicPath:'/'
     },
@@ -69,6 +70,7 @@ if (isDev) {
   })
 } else {
   config = merge(baseConfig, {
+    mode:'production',
     entry: {
       app: path.join(__dirname, '../client/index.js'),
       vendor: ['vue']

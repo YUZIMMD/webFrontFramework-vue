@@ -1,4 +1,4 @@
-
+// 渲染模版-----（版本1:出错，没有获取到任何style和script中的代码）
 const ejs = require('ejs');
 
 module.exports = async (ctx, renderer,template)=>{

@@ -1,6 +1,6 @@
 // 在node端跑起来就够了，配置相对简单，不需要配置开发环境和生产环境
 const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')

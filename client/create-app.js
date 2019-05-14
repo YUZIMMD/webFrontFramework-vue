@@ -11,6 +11,7 @@ import './assets/styles/global.styl'
 
 Vue.use(VueRouter);
 Vue.use(Vuex)
+// 为每个请求创建了一个新的根vue实例，这与每个用户在自己的浏览器中使用新应用程序的实例类似
 export default ()=>{
     const router = createRouter();
     const store = createStore();
