@@ -7,7 +7,7 @@
         <!-- <Todo></Todo> -->
         <!-- 挂载路由 -->
         <router-link :to="{name:'app', params: { id: 123 }}">app</router-link>
-        <router-link to='./login'>login</router-link>
+        <router-link to='./login'>login1</router-link>
         <transition name="fade">
            <router-view />   
         </transition>
