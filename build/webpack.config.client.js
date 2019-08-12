@@ -40,9 +40,9 @@ if (isDev) {
   // 开发环境
   config = merge(baseConfig, {
     mode:'development',
-    output:{
-      publicPath:'/'
-    },
+    // output:{
+    //   publicPath:'/'
+    // },
     devtool: '#cheap-module-eval-source-map',
     module: {
       rules: [
@@ -75,10 +75,10 @@ if (isDev) {
       app: path.join(__dirname, '../client/index.js'),
       vendor: ['vue']
     },
-    output: {
-      filename: '[name].[chunkhash:8].js',
-      publicPath:'./'
-    },
+    // output: {
+    //   filename: '[name].[chunkhash:8].js',
+    //   publicPath:'./'
+    // },
     module: {
       rules: [
         {

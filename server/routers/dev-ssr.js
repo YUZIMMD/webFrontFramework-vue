@@ -50,10 +50,10 @@ const handleSSR = async (ctx) => {
         path.join(__dirname,'../server.template.ejs'),
         'utf-8'
     )
-
+    console.log('1111111',clientMainfest);
     const renderer = VueServerRenderer.createBundleRenderer(bundle,{
         inject:false,
-        clientMainfest//自动生成带有<script></script>标签的js引用的字符串
+        clientMainfest
     })
 
     await serverRender(ctx,renderer,template)

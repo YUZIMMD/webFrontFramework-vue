@@ -22,26 +22,9 @@ let config
   externals:Object.keys(require('../package.json').dependencies),//不要打包这部分的文件
   module: {
     rules: [
-        // 有dom操作的
-    //   {
-    //     test: /\.styl(us)?$/,
-    //     use: [
-    //       'vue-style-loader',
-    //       'css-loader',
-    //       {
-    //         loader: 'postcss-loader',
-    //         options: {
-    //           sourceMap: true // 开启 CSS Modules
-    //           // modules: true通过动态类的绑定
-    //         }
-    //       },
-    //       'stylus-loader'
-    //     ]
-    //   }
-    // node端没有dom执行的环境，所以使用下面这种方式
     {
         test: /\.styl(us)?$/,
-        include: [path.resolve(__dirname, '../client')],
+        // include: [path.resolve(__dirname, '../client')],
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
